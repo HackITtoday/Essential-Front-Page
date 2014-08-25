@@ -1,0 +1,58 @@
+$eh-color: #33cccc;
+$eh-font:  Roboto, sans-serif;
+
+
+//Responsive Break Points Mixin
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 64.375em) { @content; }
+  }
+  @else if $point == medium {
+    @media (min-width: 50em) { @content; }
+  }
+  @else if $point == small {
+    @media (min-width: 37.5em)  { @content; }
+  }
+}
+
+//Keeping Footer at the Bottom Mixin
+@mixin sticky-footer-fixed (
+$height,
+$wrapper: ".wrapper",
+$footer: ".footer"
+) {
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #{$wrapper} {
+    min-height: 100%;
+    margin-bottom: -$height;
+    &:after {
+      content: "";
+      display: block;
+    }
+  }
+
+  #{$wrapper}:after,
+  #{$footer} {
+    height: $height;
+  }
+
+}
+
+h1 {
+  font-family: $eh-font;
+}
+//Footer Styling
+@include sticky-footer-fixed(4em);
+
+.footer {
+  background: $eh-color;
+  color: white;
+}
+
