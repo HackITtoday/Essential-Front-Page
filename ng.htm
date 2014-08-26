@@ -3,6 +3,8 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>AngularJS + Masonry (with zoom) - jsFiddle demo</title>
+  <link href="data:text/css;charset=utf-8," data-href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" id="bs-theme-stylesheet">
+  <link href="data:text/css;charset=utf-8," data-href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" id="bs-theme-stylesheet">
   <style type='text/css'>
     .grid {
     border: solid 1px #ccc padding: 0px 0px 0 0;
@@ -57,6 +59,7 @@
   </style>
 <script type='text/javascript'>//<![CDATA[ 
 window.onload=function(){
+  $('.btn').button();
 angular.module('app', ['infinite-scroll'])
 .directive("masonry", function () {
     var NGREPEAT_SOURCE_RE = '<!-- ngRepeat: ((.*) in ((.*?)( track by (.*))?)) -->';
@@ -134,24 +137,24 @@ angular.bootstrap(document.body, ['app']);
 
 </script>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.08/jquery.masonry.min.js"></script>
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
 </head>
 <body>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.08/jquery.masonry.min.js"></script>
-<script src="/bower_components/angular$ angular.min.js"></script>
-<script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
-
 
 <div ng-controller="MainCtrl">
- <!--   <a href="#" ng-click="order = 'id'">Order by id</a>
-    <a href="#" ng-click="order = 'value'">Order by value</a>
-    <a href="#" ng-click="order = 'type'">Order by type</a>
--->
-    <a href="#" ng-click="typeFilter = 'attractions'">attractions</a>
-    <a href="#" ng-click="typeFilter = 'destinations'">destinations</a>
-    <a href="#" ng-click="typeFilter = 'hotels'">hotels</a>
-
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-primary active" ng-click="typeFilter = 'attractions'">
+      <input type="radio" name="options" id="option1" >Attractions</label>
+    <label class="btn btn-primary" ng-click="typeFilter = 'destinations'">
+      <input type="radio" name="options" id="option2">Destinations</label>
+    <label class="btn btn-primary" ng-click="typeFilter = 'hotels'">
+      <input type="radio" name="options" id="option3">Hotels</label>
+  </div>
     <ul class="grid" masonry="true" infinite-scroll='loadMore(items,allitems)' infinite-scroll-distance='2' >
         <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
         <span><a href="{{iten.url}}" >{{item.value}}</a></span>
