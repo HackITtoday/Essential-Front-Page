@@ -306,9 +306,9 @@ angular.bootstrap(document.body, ['app']);
 
   <footer>
     <div ng-controller="MainCtrl" >
-      <ul class="grid" masonry="true" infinite-scroll='loadMore(items,allitems)' infinite-scroll-distance='2' >
+      <ul class="grid" masonry="true" infinite-scroll='loadMore()' infinite-scroll-distance='1' >
         <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-        <span><a href="{{iten.url}}" >{{item.value}}</a></span>
+          <span><img src="{{item.image}}" /> <a href="{{item.url}}" >{{item.value}}</a></span>
         </li> 
       </ul>
     </div>
