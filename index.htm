@@ -141,6 +141,14 @@ body .white-box {
     -ms-flex: 1; /* IE 10 */ 
     flex: 1;
 }
+.grid img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: solid 0px #ccc;
+    margin: 0;
+    background: #eee;
+}
 .grid li {
     display: inline-block;
     width: 200px;
@@ -295,11 +303,11 @@ angular.bootstrap(document.body, ['app']);
     <div class="flex">
       <div class="btn-group btn-group-lg" data-toggle="buttons">
         <label class="btn btn-primary " ng-click="typeFilter = 'attractions'">
-          <input type="radio" name="options" id="option1" >Attractions</label>
+          <input type="radio" name="options">Attractions</label>
         <label class="btn btn-primary" ng-click="typeFilter = 'destinations'">
-          <input type="radio" name="options" id="option2">Destinations</label>
+          <input type="radio" name="options">Destinations</label>
         <label class="btn btn-primary" ng-click="typeFilter = 'hotels'">
-          <input type="radio" name="options" id="option3">Hotels</label>
+          <input type="radio" name="options">Hotels</label>
       </div>
     </div>
   </div>
