@@ -130,79 +130,89 @@ body .white-box {
 .gist {
   font-size: 14px;
 }
-    .grid {
-    border: solid 1px #ccc padding: 0px 0px 0 0;
-    margin: auto;
-    display: -webkit-flex; /* Safari */
-    display: flex;
+.grid {
+  border: solid 1px #ccc padding: 0px 0px 0 0;
+  margin: auto;
+  display: -webkit-flex; /* Safari */
+  display: flex;
 }
 .flex {
-    -webkit-flex: 1; /* Safari 6.1+ */
-    -ms-flex: 1; /* IE 10 */ 
-    flex: 1;
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */ 
+  flex: 1;
 }
+
 .grid img {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border: solid 0px #ccc;
-    margin: 0;
-    background: #eee;
+  position: absolute;
+  min-width:100%;
+  min-height:100%;
+}
+.grid img.tall {
+  max-width: 120%;
+  margin: 0 -10%;
+}
+.grid img.wide {
+  max-height: 100%;
 }
 .grid li {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    border: solid 0px #ccc;
-    margin: 0;
-    background: #eee;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: solid 0px #ccc;
+  margin: 0;
+  background: #eee;
+  overflow:hidden;
 }
 .hotels {
-      background:red;
+  background:red;
 }
 .destinations {
-      background:green;
+  background:green;
 }
 .attractions {
-      background:blue;
+  background:blue;
 }
 /**** Transitions ****/
 
 .masonry,
 .masonry li { /* apply before masonry add class */
-    position: absolute; /* important to add it before enter animation start */
-    
-    -webkit-transition-duration: .9s;
-    transition-duration: .9s;
-    
-    -webkit-transition-property: all;
-    transition-property: all;
+  position: absolute; /* important to add it before enter animation start */
+
+  -webkit-transition-duration: .9s;
+  transition-duration: .9s;
+
+  -webkit-transition-property: all;
+  transition-property: all;
 }
 .masonry .masonry-enter { /* limit animated properties for entering elements */
-    -webkit-transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
+  -webkit-transition-property: -webkit-transform, opacity;
+  transition-property: transform, opacity;
 }
 
 .masonry-enter,
 .masonry-leave.masonry-leave-active {
-    opacity: 0;
-    -webkit-transform: scale(0.1);
-    transform: scale(0.1);
+  opacity: 0;
+  -webkit-transform: scale(0.1);
+  transform: scale(0.1);
 }
 
 .masonry-leave,
 .masonry-enter.masonry-enter-active {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
 .center-block {
   margin:auto;
 }
 
-  </style>
+</style>
 <script type='text/javascript'>//<![CDATA[ 
 window.onload=function(){
+    $('.grid').find('img').each(function() {
+        var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+        $(this).addClass(imgClass);
+    })
   $('.btn').button();
 angular.module('app', ['infinite-scroll'])
 .directive("masonry", function () {
@@ -311,20 +321,17 @@ angular.bootstrap(document.body, ['app']);
       </div>
     </div>
   </div>
-
   <footer>
     <div ng-controller="MainCtrl" >
       <ul class="grid" masonry="true" infinite-scroll='loadMore()' infinite-scroll-distance='1' >
         <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-          <span><img src="{{item.image}}" /> <a href="{{item.url}}" >{{item.value}}</a></span>
+        <span><a href="{{item.url}}" ><img src="{{item.image}}" /> <h3> {{item.value}} </h3></a></span>
         </li> 
       </ul>
     </div>
   </footer>
   </body>
-
-
-  </html>
+</html>
 
 
 
