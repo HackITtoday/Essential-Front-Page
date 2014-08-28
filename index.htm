@@ -3,16 +3,15 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Essential UK Hotel Reservations 01189714700</title>
-<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
-<link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.08/jquery.masonry.min.js"></script>
-<script src="/bower_components/angular/angular.min.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/bower_components/bootstrap/js/button.js"></script>
-<script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
-<script src="//twitter.github.io/typeahead.js/js/handlebars.js"></script>
-<script src="//twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
+<link href="./bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/angular/angular.min.js"></script>
+<script src="./bower_components/angular-masonry/angular-masonry.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./bower_components/bootstrap/js/button.js"></script>
+<script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+<script src="./bower_components/angular-typeahead/angular-typeahead.js"></script>
 <script>
 $(window).load(function(){
     var search = new Bloodhound({
@@ -119,7 +118,6 @@ body .white-box {
 .tt-suggestion.tt-cursor {
   color: #fff;
   background-color: #0097cf;
-
 }
 
 .tt-suggestion p {
@@ -131,22 +129,10 @@ body .white-box {
   text-align:center;
   margin: 0 auto;
 }
-
-.gist {
-  font-size: 14px;
-}
 .grid {
   border: solid 1px #ccc padding: 0px 0px 0 0;
   margin: auto;
-  display: -webkit-flex; /* Safari */
-  display: flex;
 }
-.flex {
-  -webkit-flex: 1; /* Safari 6.1+ */
-  -ms-flex: 1; /* IE 10 */ 
-  flex: 1;
-}
-
 .grid img {
   min-width:100%;
   min-height:100%;
@@ -158,23 +144,27 @@ body .white-box {
 .grid img.wide {
   max-height: 100%;
 }
+.grid li a {
+  display: block;
+  width: 200px;
+  height: 200px;
+  overflow:hidden;
+}
 .grid li {
   display: inline-block;
   width: 200px;
   height: 200px;
-  border: solid 0px #ccc;
-  margin: 0;
+  margin: 8px;
   background: #eee;
   overflow:hidden;
 }
-.grid h3 {
-  position: absolute;
-  bottom: 0;
+.grid span.title {
   background: #fff;
   display: block;
-  width: 100%;
-  margin: 0;
-  opacity: .8;
+  width: 180px;
+  opacity: .9;
+  margin: 143px 10px -183px 10px;
+  height: 40px;
 }
 .hotels {
   background:red;
@@ -226,81 +216,29 @@ body .white-box {
 </style>
 <script type='text/javascript'>//<![CDATA[ 
 window.onload=function(){
-    $('.grid').find('img').each(function() {
-        var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-        $(this).addClass(imgClass);
-    })
+
+  $('.grid').find('img').each(function() {
+      var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+      $(this).addClass(imgClass);
+  })
   $('.btn').button();
-angular.module('app', ['infinite-scroll'])
-.directive("masonry", function () {
-    var NGREPEAT_SOURCE_RE = '<!-- ngRepeat: ((.*) in ((.*?)( track by (.*))?)) -->';
-    return {
-        compile: function(element, attrs) {
-            // auto add animation to brick element
-            var animation = attrs.ngAnimate || "'masonry'";
-            var $brick = element.children();
-            $brick.attr("ng-animate", animation);
-            
-            // generate item selector (exclude leaving items)
-            var type = $brick.prop('tagName');
-            var itemSelector = type+":not([class$='-leave-active'])";
-            
-            return function (scope, element, attrs) {
-                var options = angular.extend({
-                    itemSelector: itemSelector
-                }, scope.$eval(attrs.masonry));
-                
-                // try to infer model from ngRepeat
-                if (!options.model) { 
-                    var ngRepeatMatch = element.html().match(NGREPEAT_SOURCE_RE);
-                    if (ngRepeatMatch) {
-                        options.model = ngRepeatMatch[4];
-                    }
-                }
-                
-                // initial animation
-                element.addClass('masonry');
-                
-                // Wait inside directives to render
-                setTimeout(function () {
-                    element.masonry(options);
-                    
-                    element.on("$destroy", function () {
-                        element.masonry('destroy')
-                    });
-                    
-                    if (options.model) {
-                        scope.$apply(function() {
-                            scope.$watchCollection(options.model, function (_new, _old) {
-                                if(_new == _old) return;
-                                
-                                // Wait inside directives to render
-                                setTimeout(function () {
-                                    element.masonry("reload");
-                                });
-                            });
-                        });
-                    }
-                });
-            };
-        }
-    };
-})
+
+angular.module('app', ['siyfion.sfTypeahead', 'wu.masonry', 'infinite-scroll'])
 .controller('MainCtrl', function ($scope, $http) {
 
-    if  ($scope.items == undefined) { $scope.items = []}
-    $http.get('/index.json').success(function (thisdata) {
-      $scope.allitems  =  thisdata; 
-      for (i = 0; i <= 400; i++) { 
-        $scope.items.push( $scope.allitems.shift() );
-      }
-    });
+  if  ($scope.items == undefined) { $scope.items = [] }
 
-      $scope.loadMore = function() {
-        for(var i = 1; i <= 40; i++) {
-          $scope.items.push( $scope.allitems.shift() );
-        }
-      };
+  $http.get('/index.json').success(function (thisdata) {
+    $scope.allitems  =  thisdata; 
+    for (i = 0; i <= 140; i++) { 
+      $scope.items.push( $scope.allitems.shift() );
+    }
+  });
+  $scope.loadMore = function() {
+    for(var i = 1; i <= 40; i++) {
+      $scope.items.push( $scope.allitems.shift() );
+    }
+  };
 });
 
 angular.bootstrap(document.body, ['app']);
@@ -311,41 +249,36 @@ angular.bootstrap(document.body, ['app']);
 
 </head>
 <body>
-<div id="main" class="jumbotron">      
+  <div id="main" class="jumbotron">      
+    <div class="container">
+      <a href="/" title="Essential Hotels Reservations">
+        <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
+      </a>
+      <div id="MiddleTitle">Search for Hotels, Destinations &amp; Attractions</div>
+      <div class="essential">
+        <input class="typeahead tt-input" type="text" placeholder="Hotel, City, Area or Interest" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"/>
+      </div>
+    </div>  
+  </div>
   <div class="container">
-    <a href="/" title="Essential Hotels Reservations">
-      <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
-    </a>
-    <div id="MiddleTitle">Search for Hotels, Destinations &amp; Attractions</div>
-    <div class="essential">
-      <input class="typeahead tt-input" type="text" placeholder="Hotel, City, Area or Interest" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"/>
-    </div>
-  </div>  
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-centered center-block col-md-12">
-      <div class="btn-group btn-group-lg" data-toggle="buttons">
-        <label class="btn btn-primary" ng-click="typeFilter = 'attractions'">
-          <input type="radio" name="options">Attractions</label>
-        <label class="btn btn-primary" ng-click="typeFilter = 'destinations'">
-          <input type="radio" name="options">Destinations</label>
-        <label class="btn btn-primary" ng-click="typeFilter = 'hotels'">
-          <input type="radio" name="options">Hotels</label>
-        <label class="btn btn-primary" ng-click="typeFilter = ''">
-          <input type="radio" name="options">All</label>
+    <div class="row">
+      <div class="col-centered center-block col-md-12">
+        <div class="btn-group btn-group-lg" data-toggle="buttons">
+          <button class="btn btn-primary" ng-click="typeFilter = 'attractions'"> Attractions</button>
+          <button class="btn btn-primary" ng-click="typeFilter = 'destinations'"> Destinations</button>
+          <button class="btn btn-primary" ng-click="typeFilter = 'hotels'"> Hotels</button>
+          <button class="btn btn-primary" ng-click="typeFilter = ''"> All</button>
+        </div>
       </div>
     </div>
+    <div ng-controller="MainCtrl" class="col-centered center-block" >
+      <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
+        <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
+        <div><a href="{{item.url}}" ><span class="title"> {{item.value}} </span><img src="{{item.image}}" /></a></div>
+        </li> 
+      </ul>
+    </div>
+    <footer> footer </footer>
   </div>
-  <div ng-controller="MainCtrl" class="col-centered center-block" >
-    <ul class="grid" masonry="true" infinite-scroll='loadMore()' infinite-scroll-distance='1' >
-      <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-        <span><a href="{{item.url}}" ><img src="{{item.image}}" /> <h3> {{item.value}} </h3></a></span>
-      </li> 
-    </ul>
-  </div>
-  <footer>
-    footer
-  </footer>
-  </body>
+</body>
 </html>
