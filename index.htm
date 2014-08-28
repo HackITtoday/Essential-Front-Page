@@ -128,6 +128,7 @@ body .white-box {
 
 .col-centered {
   float: none;
+  text-align:center;
   margin: 0 auto;
 }
 
@@ -147,7 +148,6 @@ body .white-box {
 }
 
 .grid img {
-  position: absolute;
   min-width:100%;
   min-height:100%;
 }
@@ -167,6 +167,15 @@ body .white-box {
   background: #eee;
   overflow:hidden;
 }
+.grid h3 {
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  display: block;
+  width: 100%;
+  margin: 0;
+  opacity: .8;
+}
 .hotels {
   background:red;
 }
@@ -177,7 +186,12 @@ body .white-box {
   background:blue;
 }
 /**** Transitions ****/
-
+.masonry {
+  margin: 0 auto;
+}
+.masonry li {
+  float: left;
+}
 .masonry,
 .masonry li { /* apply before masonry add class */
   position: absolute; /* important to add it before enter animation start */
@@ -314,25 +328,27 @@ angular.bootstrap(document.body, ['app']);
 </div>
 <div class="container">
   <div class="row">
-    <div class="flex">
+    <div class="col-centered center-block col-md-12">
       <div class="btn-group btn-group-lg" data-toggle="buttons">
-        <label class="btn btn-primary " ng-click="typeFilter = 'attractions'">
+        <label class="btn btn-primary" ng-click="typeFilter = 'attractions'">
           <input type="radio" name="options">Attractions</label>
         <label class="btn btn-primary" ng-click="typeFilter = 'destinations'">
           <input type="radio" name="options">Destinations</label>
         <label class="btn btn-primary" ng-click="typeFilter = 'hotels'">
           <input type="radio" name="options">Hotels</label>
+        <label class="btn btn-primary" ng-click="typeFilter = ''">
+          <input type="radio" name="options">All</label>
       </div>
     </div>
   </div>
-  <footer>
-    <div ng-controller="MainCtrl" >
-      <ul class="grid" masonry="true" infinite-scroll='loadMore()' infinite-scroll-distance='1' >
-        <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
+  <div ng-controller="MainCtrl" class="col-centered center-block" >
+    <ul class="grid" masonry="true" infinite-scroll='loadMore()' infinite-scroll-distance='1' >
+      <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
         <span><a href="{{item.url}}" ><img src="{{item.image}}" /> <h3> {{item.value}} </h3></a></span>
-        </li> 
-      </ul>
-    </div>
+      </li> 
+    </ul>
+  </div>
+  <footer>
   </footer>
   </body>
 </html>
