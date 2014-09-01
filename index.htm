@@ -11,29 +11,27 @@
 <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="./bower_components/bootstrap/js/button.js"></script>
 <script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+<script src="./bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
+<script src="./bower_components/typeahead.js/dist/bloodhound.min.js"></script>
 <script src="./bower_components/angular-typeahead/angular-typeahead.js"></script>
 <script>
 $(window).load(function(){
-    var search = new Bloodhound({
+  var search = new Bloodhound({
 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 queryTokenizer: Bloodhound.tokenizers.whitespace,
 prefetch:{ url:  "/index.json"}
 });
 
-    search.initialize();
+  search.initialize();
 
-    $('.essential .typeahead').typeahead(null, {
-       name: 'search',
-       displayKey: 'value',
-       source: search.ttAdapter(),
-       templates: {
-       empty: [
-       '<div class="empty-message">',
-       'Can\'t Find Want Your Looking For? <br /> We\'d Love to Help Please <br /> Call <a href="tel:01189714700">0118 971 4700</a>, <a href="#!" onclick="$zopim.livechat.button.show();"> Chat </a>, or <a href="mailto:nick@essential-hotels.com"> Email </a>',
-       '</div>'
-  ].join('\n'),
-  suggestion: Handlebars.compile('<p class="{{type}}">{{value}}</p>')
-  }
+  $('.essential .typeahead').typeahead(null, {
+     name: 'search',
+     displayKey: 'value',
+     source: search.ttAdapter(),
+     templates: {
+       empty: '<div class="empty-message"> Can\'t Find Want Your Looking For? <br /> We\'d Love to Help Please <br /> Call <a href="tel:01189714700">0118 971 4700</a>, <a href="#!" onclick="$zopim.livechat.button.show();"> Chat </a>, or <a href="mailto:nick@essential-hotels.com"> Email </a> </div>' ,
+       suggestion:'<p class="{{type}}">{{value}}</p>'
+     }
   }).bind("typeahead:selected", function(obj, datum, name) {
   if (datum.url) {
     $(location).attr('href', datum.url);
@@ -43,7 +41,7 @@ prefetch:{ url:  "/index.json"}
     if (datum.url) {
       /* $(location).attr('href', datum.url); */
     }
-    });
+  });
 });
 </script>
 <style type='text/css'>
