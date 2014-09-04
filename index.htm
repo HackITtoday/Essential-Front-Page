@@ -11,6 +11,14 @@
         <link href="./css/main.css" rel="stylesheet" >
         <link rel="import" href="./bower_components/core-icons/core-icons.html">
         <link rel="import" href="./bower_components/core-icon/core-icon.html"> 
+        <link rel="import" href="./bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="./bower_components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="./bower_components/core-menu/core-menu.html">
+        <link rel="import" href="./bower_components/core-item/core-item.html">
+        <link rel="import" href="./bower_components/core-icon-button/core-icon-button.html">
+        <link rel="import" href="./bower_components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="./bower_components/core-menu/core-submenu.html">
+        <script src="./bower_components/platform/platform.js"> </script>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./bower_components/typeahead.js/dist/typeahead.jquery.min.js"></script>
         <script src="./bower_components/typeahead.js/dist/bloodhound.min.js"></script>
@@ -69,7 +77,7 @@
                 }
               });
               $scope.loadMore = function() {
-                for(var i = 1; i <= 40; i++) {
+                for(var i = 1; i <= 10; i++) {
                   $scope.items.push( $scope.allitems.shift() );
                 }
               };
@@ -88,7 +96,7 @@
     <!-- Top Push Down Menu -->
         <section id="wrapper" class="wrapper" data-asm-wrapper>
             <section id="buttons">
-                <div data-asm-control="pushTop">Push Top</div>
+              <div data-asm-control="pushTop"><core-icon icon="arrow-drop-down" ></core-icon></div>
             </section>
         </section>
 
@@ -100,19 +108,9 @@
         </nav>
 
 <!--Side Menu-->
-        <section id="main_content" class="inner" ng-app="app">
-            <core-icon icon="menu" id="core_icon"></core-icon>
-            <button type="button" class="btn btn-default btn-lg pull-left" id="menu-button" pageslide="left"  ps-speed="0.5" href="#menu">
-                Menu
-            </button>
+        <section id="main_content" class="inner" >
 
             <div style="padding:20px" id="menu">
-
-                <div id="close-button">
-                    <button type="button" class="btn btn-default btn-lg pull-right" id="menu-close" href="#">
-                        Close
-                    </button>
-                </div>
 
                 <div id="menu-list">
                     <h2>Essential Hotels</h2>
