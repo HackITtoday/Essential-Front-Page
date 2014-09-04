@@ -1,284 +1,224 @@
 <!DOCTYPE html>
+
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Essential UK Hotel Reservations 01189714700</title>
-<link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
-<link href="./bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
-<script src="./bower_components/jquery/dist/jquery.min.js"></script>
-<script src="./bower_components/angular/angular.min.js"></script>
-<script src="./bower_components/angular-masonry/angular-masonry.js"></script>
-<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./bower_components/bootstrap/js/button.js"></script>
-<script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
-<script src="./bower_components/angular-typeahead/angular-typeahead.js"></script>
-<script>
-$(window).load(function(){
-    var search = new Bloodhound({
-datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-queryTokenizer: Bloodhound.tokenizers.whitespace,
-prefetch:{ url:  "/index.json"}
-});
 
-    search.initialize();
+    <head>
 
-    $('.essential .typeahead').typeahead(null, {
-       name: 'search',
-       displayKey: 'value',
-       source: search.ttAdapter(),
-       templates: {
-       empty: [
-       '<div class="empty-message">',
-       'Can\'t Find Want Your Looking For? <br /> We\'d Love to Help Please <br /> Call <a href="tel:01189714700">0118 971 4700</a>, <a href="#!" onclick="$zopim.livechat.button.show();"> Chat </a>, or <a href="mailto:nick@essential-hotels.com"> Email </a>',
-       '</div>'
-  ].join('\n'),
-  suggestion: Handlebars.compile('<p class="{{type}}">{{value}}</p>')
-  }
-  }).bind("typeahead:selected", function(obj, datum, name) {
-  if (datum.url) {
-    $(location).attr('href', datum.url);
-  }
-  }).bind("typeahead:cursorchanged", function(obj, datum, name) {
-    console.log(obj, datum, name);
-    if (datum.url) {
-      /* $(location).attr('href', datum.url); */
-    }
-    });
-});
-</script>
-<style type='text/css'>
-body #main {
-  background: url(//essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Different-1200-x-Use.jpg) 50%;
-}
+<!--Script and Style References-->
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Essential UK Hotel Reservations 01189 714 700</title>
+        <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
+        <link href="./bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
+        <link href="./css/main.css" rel="stylesheet" >
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./bower_components/angular/angular.min.js"></script>
+        <script src="./bower_components/angular-masonry/angular-masonry.js"></script>
+        <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./bower_components/bootstrap/js/button.js"></script>
+        <script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+        <script src="./bower_components/angular-typeahead/angular-typeahead.js"></script>
+        <script src="./bower_components/angular-pageslide/angular-pageslide-directive.js"></script>
+        <script src="./bower_components/angular-side-menu/angular-slide-menu.js"></script>
 
-body .white-box {
-  background: #FFFFFF;
-  opacity: .9;
-  text-align: center;
-  min-height: 187px;
-  padding: 17px 70px;
-  max-width: 427px;
-  margin: 75px auto;
-}
+<!--Search Box Script-->
+        <script>
+            $(window).load(function(){
+                var search = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch:{ url:  "/index.json"}
+            });
 
-.typeahead,
-.tt-query,
-.tt-hint {
-  width: 396px;
-  height: 30px;
-  padding: 8px 12px;
-  font-size: 24px;
-  line-height: 30px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  outline: none;
-}
+                search.initialize();
 
-.typeahead {
-  background-color: #fff;
-}
-.typeahead:focus {
-  border: 2px solid #0097cf;
-}
+                $('.essential .typeahead').typeahead(null, {
+                   name: 'search',
+                   displayKey: 'value',
+                   source: search.ttAdapter(),
+                   templates: {
+                   empty: [
+                   '<div class="empty-message">',
+                   'Can\'t Find Want Your Looking For? <br /> We\'d Love to Help Please <br /> Call <a href="tel:01189714700">0118 971 4700</a>, or <a href="mailto:nick@essential-hotels.com"> Email </a>',
+                   '</div>'
+              ].join('\n'),
+              suggestion: Handlebars.compile('<p class="{{type}}">{{value}}</p>')
+              }
+              }).bind("typeahead:selected", function(obj, datum, name) {
+              if (datum.url) {
+                $(location).attr('href', datum.url);
+              }
+              }).bind("typeahead:cursorchanged", function(obj, datum, name) {
+                console.log(obj, datum, name);
+                if (datum.url) {
+                  /* $(location).attr('href', datum.url); */
+                }
+                });
+            });
+        </script>
 
-.tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
+<!--Data in the Grid-->
+        <script type='text/javascript'>//<![CDATA[
+            window.onload=function(){
 
-.tt-hint {
-  color: #999
-}
+              $('.grid').find('img').each(function() {
+                  var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+                  $(this).addClass(imgClass);
+              })
+              $('.btn').button();
 
-.tt-dropdown-menu {
-  font-size:1.5em;
-  width: 422px;
-  margin-top: 12px;
-  padding: 8px 0;
-  background-color: #fff !important;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  box-shadow: 0 5px 10px rgba(0,0,0,.2);
-}
+            angular.module('app', ['siyfion.sfTypeahead', 'wu.masonry', 'infinite-scroll'])
+            .controller('MainCtrl', function ($scope, $http) {
 
-.tt-suggestion {
-  padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
-}
+              if  ($scope.items == undefined) { $scope.items = [] }
 
-.tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #0097cf;
-}
+              $http.get('/index.json').success(function (thisdata) {
+                $scope.allitems  =  thisdata;
+                for (i = 0; i <= 140; i++) {
+                  $scope.items.push( $scope.allitems.shift() );
+                }
+              });
+              $scope.loadMore = function() {
+                for(var i = 1; i <= 40; i++) {
+                  $scope.items.push( $scope.allitems.shift() );
+                }
+              };
+            });
 
-.tt-suggestion p {
-  margin: 0;
-}
+            angular.bootstrap(document.body, ['app']);
+            }//]]>
 
-.col-centered {
-  float: none;
-  text-align:center;
-  margin: 0 auto;
-}
-.grid {
-  border: solid 1px #ccc padding: 0px 0px 0 0;
-  margin: auto;
-}
-.grid img {
-  min-width:100%;
-  min-height:100%;
-}
-.grid img.tall {
-  max-width: 120%;
-  margin: 0 -10%;
-}
-.grid img.wide {
-  max-height: 100%;
-}
-.grid li a {
-  display: block;
-  width: 200px;
-  height: 200px;
-  overflow:hidden;
-}
-.grid li {
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  margin: 8px;
-  background: #eee;
-  overflow:hidden;
-}
-.grid span.title {
-  background: #fff;
-  display: block;
-  width: 180px;
-  opacity: .9;
-  margin: 143px 10px -183px 10px;
-  height: 40px;
-}
-.hotels {
-  background:red;
-}
-.destinations {
-  background:green;
-}
-.attractions {
-  background:blue;
-}
-/**** Transitions ****/
-.masonry {
-  margin: 0 auto;
-}
-.masonry li {
-  float: left;
-}
-.masonry,
-.masonry li { /* apply before masonry add class */
-  position: absolute; /* important to add it before enter animation start */
+        </script>
 
-  -webkit-transition-duration: .9s;
-  transition-duration: .9s;
+<!--Page Slide Script-->
+        <script>
+            var app = angular.module("app", ["pageslide-directive"]);
+        </script>
 
-  -webkit-transition-property: all;
-  transition-property: all;
-}
-.masonry .masonry-enter { /* limit animated properties for entering elements */
-  -webkit-transition-property: -webkit-transform, opacity;
-  transition-property: transform, opacity;
-}
-.masonry-enter,
-.masonry-leave.masonry-leave-active {
-  opacity: 0;
-  -webkit-transform: scale(0.1);
-  transform: scale(0.1);
-}
+<!--Page Top Push-->
+        <script>
+            angular.module('sampleApp', ['slideMenu']);
+        </script>
 
-.masonry-leave,
-.masonry-enter.masonry-enter-active {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-.center-block {
-  margin:auto;
-}
+    </head>
 
-</style>
-<script type='text/javascript'>//<![CDATA[ 
-window.onload=function(){
+    <body>
 
-  $('.grid').find('img').each(function() {
-      var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-      $(this).addClass(imgClass);
-  })
-  $('.btn').button();
+<!--Top Push Down Menu
+        <section id="wrapper" class="wrapper" data-asm-wrapper>
+            <section id="buttons">
+                <div data-asm-control="pushTop">Push Top</div>
+            </section>
+        </section>
 
-angular.module('app', ['siyfion.sfTypeahead', 'wu.masonry', 'infinite-scroll'])
-.controller('MainCtrl', function ($scope, $http) {
+        <nav data-asm-push-top>
+            <ul>
+                <li>Contact Us</li>
+                <li>Email Us</li>
+            </ul>
+        </nav>
 
-  if  ($scope.items == undefined) { $scope.items = [] }
+<!--Side Menu-->
+        <section id="main_content" class="inner" ng-app="app">
 
-  $http.get('/index.json').success(function (thisdata) {
-    $scope.allitems  =  thisdata; 
-    for (i = 0; i <= 140; i++) { 
-      $scope.items.push( $scope.allitems.shift() );
-    }
-  });
-  $scope.loadMore = function() {
-    for(var i = 1; i <= 40; i++) {
-      $scope.items.push( $scope.allitems.shift() );
-    }
-  };
-});
+            <button type="button" class="btn btn-default btn-lg pull-left" id="menu-button" pageslide="left"  ps-speed="0.5" href="#menu">
+                Menu
+            </button>
 
-angular.bootstrap(document.body, ['app']);
-}//]]>  
+            <div style="padding:20px" id="menu">
 
-</script>
+                <div id="close-button">
+                    <button type="button" class="btn btn-default btn-lg pull-right" id="menu-close" href="#">
+                        Close
+                    </button>
+                </div>
+
+                <div id="menu-list">
+                    <h2>Essential Hotels</h2>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Conferences</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </section>
+
+<!--Jumbotron-->
+        <section id="main" class="jumbotron">
+
+            <div class="container">
+<!--
+              <a href="/" title="Essential Hotels Reservations">
+                <img src="https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg" alt="Essential Hotels 01189714700 ">
+              </a>
+-->
+
+              <div id="WhiteBox">
+                  <div id="MiddleTitle">
+
+                      <a href="/" title="Essential Hotels Reservations">
+                          <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
+                      </a>
+
+                      <div id="TitleAboveSearch" style="font-size:20px; font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif, font-weight:300, padding-top;20px ;">
+                          Search for Hotels, Destinations &amp; Attractions
+                      </div>
+                  </div>
+
+                  <div class="essential">
+                    <input class="typeahead tt-input" type="text" placeholder="Hotel, City, Area or Interest" autocomplete="off" spellcheck="false" dir="auto"/>
+                  </div>
+
+                    <div id="TextUnderSearch">
+                            0118 971 4700
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+<!--Grid of Content-->
+        <section class="container">
+
+            <div class="row">
+              <div class="col-centered center-block col-md-12">
+
+                  <ul class="nav nav-pills nav-justified">
+                      <li class="active"><a ng-click="typeFilter = 'attractions'"> Attractions</a></li>
+                      <li><a ng-click="typeFilter = 'destinations'"> Destinations</a></li>
+                      <li><a ng-click="typeFilter = 'hotels'"> Hotels</a></li>
+                      <li><a ng-click="typeFilter = ''"> All</a></li>
+                  </ul>
 
 
-</head>
-<body>
-  <div id="main" class="jumbotron">      
-    <div class="container">
-      <a href="/" title="Essential Hotels Reservations">
-        <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
-      </a>
-      <div id="MiddleTitle">Search for Hotels, Destinations &amp; Attractions</div>
-      <div class="essential">
-        <input class="typeahead tt-input" type="text" placeholder="Hotel, City, Area or Interest" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"/>
-      </div>
-    </div>  
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-centered center-block col-md-12">
-        <div class="btn-group btn-group-lg" data-toggle="buttons">
-          <button class="btn btn-primary" ng-click="typeFilter = 'attractions'"> Attractions</button>
-          <button class="btn btn-primary" ng-click="typeFilter = 'destinations'"> Destinations</button>
-          <button class="btn btn-primary" ng-click="typeFilter = 'hotels'"> Hotels</button>
-          <button class="btn btn-primary" ng-click="typeFilter = ''"> All</button>
-        </div>
-      </div>
-    </div>
-    <div ng-controller="MainCtrl" class="col-centered center-block" >
-      <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
-        <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-        <div><a href="{{item.url}}" ><span class="title"> {{item.value}} </span><img src="{{item.image}}" /></a></div>
-        </li> 
-      </ul>
-    </div>
-    <footer> footer </footer>
-  </div>
-</body>
+                </div>
+              </div>
+            </div>
+
+            <div ng-controller="MainCtrl" class="col-centered center-block" >
+              <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
+                <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
+                    <div>
+                        <a href="{{item.url}}" >
+                            <span class="title"> {{item.value}} </span>
+                                <img src="{{item.image}}" />
+                        </a>
+                    </div>
+                </li>
+              </ul>
+            </div>
+
+        </section>
+
+<!--Footer-->
+        <footer> footer </footer>
+
+    </body>
+
 </html>
+
+
+
