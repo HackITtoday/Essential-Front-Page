@@ -64,6 +64,24 @@ body .white-box {
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
+.hotels {
+  padding-left: 20px;
+  line-height: 16px;
+  background: url(https://essentialhotels.co.uk/wp-content/themes/listings-child/images/icons/bed-icon.jpg) no-repeat;
+  background-clip: padding-box;
+}
+.destinations {
+  padding-left: 20px;
+  line-height: 16px;
+  background: url(https://essentialhotels.co.uk/wp-content/themes/listings-child/images/icons/destination-pin-16x16.jpg) no-repeat;
+  background-clip: padding-box;
+}
+.attractions {
+  padding-left: 20px;
+  line-height: 16px;
+  background: url(https://essentialhotels.co.uk/wp-content/themes/listings-child/images/icons/attraction-icon.jpg) no-repeat;
+  background-clip: padding-box;
+}
 .tt-suggestion {
     padding: 3px 20px;
     font-size: 18px;
@@ -121,50 +139,6 @@ body .white-box {
     margin: 143px 10px -183px 10px;
     height: 40px;
 }
-.hotels {
-    background:red;
-}
-.destinations {
-    background:green;
-}
-.attractions {
-    background:blue;
-}
-/**** Transitions ****/
-.masonry {
-    margin: 0 auto;
-}
-.masonry li {
-    float: left;
-}
-.masonry,
-.masonry li { /* apply before masonry add class */
-    position: absolute; /* important to add it before enter animation start */
-
-    -webkit-transition-duration: .9s;
-    transition-duration: .9s;
-
-    -webkit-transition-property: all;
-    transition-property: all;
-}
-.masonry .masonry-enter { /* limit animated properties for entering elements */
-    -webkit-transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-}
-.masonry-enter,
-.masonry-leave.masonry-leave-active {
-    opacity: 0;
-    -webkit-transform: scale(0.1);
-    transform: scale(0.1);
-}
-
-.masonry-leave,
-.masonry-enter.masonry-enter-active {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
-
 .ng-pageslide {
     background: #33cccc;
 }
