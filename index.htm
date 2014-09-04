@@ -204,9 +204,9 @@
               <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
                 <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
                     <div>
-                        <a href="{{item.url}}" >
+                        <a ng-href="{{item.url}}" >
                             <span class="title"> {{item.value}} </span>
-                                <img src="{{item.image}}" />
+                            <img ng-src="{{item.image}}" />
                         </a>
                     </div>
                 </li>
@@ -214,9 +214,6 @@
             </div>
 
         </section>
-
-<!--Footer-->
-        <footer> footer </footer>
 
     </body>
 
