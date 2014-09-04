@@ -1,0 +1,221 @@
+/*
+body #main {
+    background: url(//essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Different-1200-x-Use.jpg) 50%;
+    text-align: center;
+}
+*/
+body .white-box {
+    background: #FFFFFF;
+    opacity: .9;
+    text-align: center;
+    min-height: 187px;
+    padding: 17px 70px;
+    max-width: 427px;
+    margin: 75px auto;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+    width: 400px;
+    height: 50px;
+    padding: 8px 12px;
+    font-size: 20px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    outline: none;
+    margin-top: 10px;
+}
+
+
+.typeahead {
+    background-color: #fff;
+}
+.typeahead:focus {
+    border: 2px solid #0097cf;
+}
+
+.tt-query {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+    color: #999
+}
+
+.tt-dropdown-menu {
+    font-size:1.5em;
+    width: 422px;
+    margin-top: 12px;
+    padding: 8px 0;
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.tt-suggestion.tt-cursor {
+    color: #fff;
+    background-color: #0097cf;
+}
+
+.tt-suggestion p {
+    margin: 0;
+}
+
+.col-centered {
+    float: none;
+    text-align:center;
+}
+.grid {
+    border: 1px #ccc;
+    padding: 0px 0px 0 0;
+    margin: auto;
+}
+.grid img {
+    min-width:100%;
+    min-height:100%;
+}
+.grid img.tall {
+    max-width: 120%;
+    margin: 0 -10%;
+}
+.grid img.wide {
+    max-height: 100%;
+}
+.grid li a {
+    display: block;
+    width: 200px;
+    height: 200px;
+    overflow:hidden;
+}
+.grid li {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 8px;
+    background: #eee;
+    overflow:hidden;
+}
+.grid span.title {
+    background: #fff;
+    display: block;
+    width: 180px;
+    opacity: .9;
+    margin: 143px 10px -183px 10px;
+    height: 40px;
+}
+.hotels {
+    background:red;
+}
+.destinations {
+    background:green;
+}
+.attractions {
+    background:blue;
+}
+/**** Transitions ****/
+.masonry {
+    margin: 0 auto;
+}
+.masonry li {
+    float: left;
+}
+.masonry,
+.masonry li { /* apply before masonry add class */
+    position: absolute; /* important to add it before enter animation start */
+
+    -webkit-transition-duration: .9s;
+    transition-duration: .9s;
+
+    -webkit-transition-property: all;
+    transition-property: all;
+}
+.masonry .masonry-enter { /* limit animated properties for entering elements */
+    -webkit-transition-property: -webkit-transform, opacity;
+    transition-property: transform, opacity;
+}
+.masonry-enter,
+.masonry-leave.masonry-leave-active {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+}
+
+.masonry-leave,
+.masonry-enter.masonry-enter-active {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.ng-pageslide {
+    background: #33cccc;
+}
+
+#menu-button {
+    margin: 10px;
+}
+
+#menu-list {
+    clear:right;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    background-image: url('https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg');
+    text-align: center;
+    padding-top: 100px;
+    height:400px;
+    background-position: 0% 25%;
+    background-size: cover;
+}
+
+#TitleOverSearch {
+    font-size:20px;
+    font-weight: 300;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#TextUnderSearch {
+    font-size:30px;
+    color: #33cccc;
+    font-weight: 300;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#WhiteBox {
+    background: #FFFFFF;
+    opacity: .9;
+    text-align: center;
+    min-height: 200px;
+    max-width: 500px;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.nav-justified {
+    width: 90%;
+    text-align: center;
+    margin: 0px auto;0px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+}
