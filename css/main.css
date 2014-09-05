@@ -227,6 +227,7 @@ a {
     color: #33cccc;
     font-weight: 300;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 20px;
 }
 
 #WhiteBox {
@@ -256,4 +257,12 @@ a {
     font-size: 20px;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
+}
+
+#TextUnUnSearch {
+    font-size: 20px;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    text-align: center;
+    color:black;
 }
