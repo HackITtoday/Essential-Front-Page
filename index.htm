@@ -35,6 +35,7 @@
             prefetch:{ url:  "./index.json"}
             });
 
+
                 search.initialize();
                 $('.essential .typeahead').typeahead(null, {
                   name: 'search',
@@ -126,11 +127,11 @@
         </core-toolbar>
   <!--Grid of Content-->
         <div class="content">
-          <paper-tabs selected="3" selectedindex="0" id="paper_tabs">
+          <paper-tabs selected="0" selectedindex="0" id="paper_tabs">
             <paper-tab ng-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
             <paper-tab ng-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
             <paper-tab ng-click="typeFilter = 'destinations'" id="paper_tab1">Destinations</paper-tab>
-            <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Attractions</paper-tab>
+            <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Sights</paper-tab>
           </paper-tabs>
           <div ng-controller="MainCtrl" class="col-centered center-block" >
             <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
