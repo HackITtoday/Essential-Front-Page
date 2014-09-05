@@ -278,3 +278,7 @@ a {
 #paper_tabs {
     color: black;
 }
+
+#drawlist {
+    line-height: 2em;
+}
