@@ -14,6 +14,7 @@
         <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
         <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
         <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+        <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
 
         <script src="./bower_components/platform/platform.js"> </script>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -93,12 +94,13 @@
 <!--Side Menu-->
     <style>    
       :host {
-        position: absolute;
         width: 100%;
-        height: 100%;
         box-sizing: border-box;
         top: 0px;
         left: 0px;
+      }
+      core-scroll-header-panel::shadow #headerBg {
+        background-image: url(demos/images/bg9.jpg);
       }
       #core_drawer_panel {
         position: absolute;
@@ -117,75 +119,74 @@
       #core_toolbar {
         color: rgb(255, 255, 255);
         background-color: rgb(79, 125, 201);
+        height: 440px;
       }
       #section {
         background: linear-gradient(rgb(214, 227, 231), rgb(173, 216, 230));
       }
+      core-drawer-panel[narrow] core-toolbar core-icon-button {
+        display: inline-block;
+      }
+      core-toolbar core-icon-button.top {
+        display: none;
+        margin: 8px;
+      }
     </style>
     <core-drawer-panel transition responsivewidth="1200px" selected="main" id="core_drawer_panel" class="drag-element" touch-action>
       <section drawer>
-            <div style="padding:20px" id="menu">
-
-                <div id="menu-list">
                     <h2>Essential Hotels</h2>
                     <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Conferences</a></li>
                     </ul>
-                </div>
-
-            </div>
       </section>
-      <section main>
-        <core-header-panel mode="standard" id="core_header_panel">
+      <core-header-panel main>
+        <core-scroll-header-panel condenses keepcondensedheader id="core_scroll_header_panel">
           <core-toolbar id="core_toolbar" class="tall">
-              <div class="middle" id="WhiteBox">
-                  <div id="MiddleTitle">
+            <core-icon-button icon="menu" class="top" onclick="document.querySelector('core-drawer-panel').togglePanel();"></core-icon-button>
+        <div class="middle" id="WhiteBox">
+          <div id="MiddleTitle">
 
-                      <a href="/" title="Essential Hotels Reservations">
-                          <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
-                      </a>
+            <a href="/" title="Essential Hotels Reservations">
+              <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
+            </a>
 
-                      <div id="TitleAboveSearch" style="font-size:20px; font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif, font-weight:300, padding-top;20px ;">
-                          Search for Hotels, Destinations &amp; Attractions
-                      </div>
-                  </div>
-
-                  <div class="essential">
-                    <input class="typeahead" type="text" placeholder="Hotel, City, Area or Interest" />
-                  </div>
-
-                    <div id="TextUnderSearch">
-                            0118 971 4700
-                    </div>
-                </div>
-
-          </core-toolbar>
-          <section id="section">
-<!--Grid of Content-->
-              <paper-tabs selected="3" selectedindex="0" id="paper_tabs">
-                <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Attractions</paper-tab>
-                <paper-tab ng-click="typeFilter = 'destinations'" id="paper_tab1">Destinations</paper-tab>
-                <paper-tab ng-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
-                <paper-tab ng-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
-              </paper-tabs>
-            <div ng-controller="MainCtrl" class="col-centered center-block" >
-              <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
-                <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-                    <div>
-                        <a ng-href="{{item.url}}" >
-                            <span class="title"> {{item.value}} </span>
-                            <img ng-src="{{item.image}}" />
-                        </a>
-                    </div>
-                </li>
-              </ul>
+            <div id="TitleAboveSearch" style="font-size:20px; font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif, font-weight:300, padding-top;20px ;">
+              Search for Hotels, Destinations &amp; Attractions
             </div>
+          </div>
 
-          </section>
+          <div class="essential">
+            <input class="typeahead" type="text" placeholder="Hotel, City, Area or Interest" />
+          </div>
+
+          <div id="TextUnderSearch">
+            0118 971 4700
+          </div>
+        </div>
+        </core-toolbar>
+        </core-scroll-header-panel>
+  <!--Grid of Content-->
+          <paper-tabs selected="3" selectedindex="0" id="paper_tabs">
+            <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Attractions</paper-tab>
+            <paper-tab ng-click="typeFilter = 'destinations'" id="paper_tab1">Destinations</paper-tab>
+            <paper-tab ng-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
+            <paper-tab ng-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
+          </paper-tabs>
+          <div ng-controller="MainCtrl" class="col-centered center-block" >
+            <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
+              <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
+              <div>
+                <a ng-href="{{item.url}}" >
+                  <span class="title"> {{item.value}} </span>
+                  <img ng-src="{{item.image}}" />
+                </a>
+              </div>
+              </li>
+            </ul>
+          </div>
         </core-header-panel>
-      </section>
     </core-drawer-panel>
 
     </body>
