@@ -185,6 +185,7 @@ a {
   overflow:hidden;
 }
 .grid span.title {
+  color: #fff;
   display: block;
   width: 180px;
   opacity: .9;
