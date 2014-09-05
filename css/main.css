@@ -283,3 +283,6 @@ a {
   font-size:1.5em;
 }
 
+#drawlist {
+    line-height: 2em;
+}
