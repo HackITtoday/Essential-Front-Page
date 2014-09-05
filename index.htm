@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-<HEAD>
+<head>
 
 <!--Script and Style References-->
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -89,21 +89,19 @@
     <body>
 
 <!--Side Menu-->
-    <style>    
-    </style>
     <core-drawer-panel transition responsivewidth="1200px" selected="main" id="core_drawer_panel" class="drag-element" touch-action>
       <section drawer id="draw">
-                    <h2>Essential Hotels</h2>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Conferences</a></li>
-                    </ul>
+         <h2>Menu</h2>
+                 
+         <a href="#">About Us</a>
+         <a href="#">Contact Us</a>
+         <a href="#">Conferences</a>
+                   
       </section>
       <core-header-panel main>
-        <core-scroll-header-panel condenses keepcondensedheader id="core_scroll_header_panel">
+        <core-scroll-header-panel condenses id="core_scroll_header_panel">
           <core-toolbar id="core_toolbar" class="tall">
-            <core-icon-button icon="menu" class="top" onclick="document.querySelector('core-drawer-panel').togglePanel();"></core-icon-button>
+            <core-icon-button icon="menu" class="top" onclick="document.querySelector('core-drawer-panel').togglePanel();">Menu</core-icon-button>
         <div class="bottom" id="WhiteBox">
           <div id="MiddleTitle">
 
