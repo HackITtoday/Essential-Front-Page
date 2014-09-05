@@ -18,194 +18,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-`core-icon-button` is an icon with button behaviors.
-
-    <core-icon-button src="star.png"></core-icon-button>
-
-`core-icon-button` includes a default icon set.  Use `icon` to specify 
-which icon from the icon set to use.
-
-    <core-icon-button icon="menu"></core-icon-button>
-
-See [`core-iconset`](#core-iconset) for more information about 
-how to use a custom icon set.
-
-@group Polymer Core Elements
-@element core-icon-button
-@homepage github.io
--->
-
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<!--
-
-The `core-icon` element displays an icon. By default an icon renders as 24px square.
-
-Example using src:
-
-    <core-icon src="star.png"></core-icon>
-
-Example setting size to 32px x 32px:
-
-    <core-icon class="big" src="big_star.png"></core-icon>
-
-    <style>
-      .big {
-        height: 32px;
-        width: 32px;
-      }
-    </style>
-
-Example using icon from default iconset:
-
-    <core-icon icon="menu"></core-icon>
-
-Example using icon `cherry` from custom iconset `fruit`:
-
-    <core-icon icon="fruit:cherry"></core-icon>
-
-See [core-iconset](#core-iconset) and [core-iconset-svg](#core-iconset-svg) for more information about
-how to use a custom iconset.
-
-See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html) for the default set of icons. To use the default set of icons you'll need to include an import for `core-icons.html`. To use a different built-in set of icons, you'll need to include an import for `core-icons/iconsets/<iconset>.html`.
-
-@group Polymer Core Elements
-@element core-icon
-@homepage polymer.github.io
--->
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<!--
-/**
- * @group Polymer Core Elements
- *
- * The `core-iconset` element allows users to define their own icon sets. 
- * The `src` property specifies the url of the icon image. Multiple icons may
- * be included in this image and they may be organized into rows.
- * The `icons` property is a space separated list of names corresponding to the
- * icons. The names must be ordered as the icons are ordered in the icon image.
- * Icons are expected to be square and are the size specified by the `iconSize`
- * property. The `width` property corresponds to the width of the icon image 
- * and must be specified if icons are arranged into multiple rows in the image.
- *
- * All `core-iconset` elements are available for use by other `core-iconset`
- * elements via a database keyed by id. Typically, an element author that wants
- * to support a set of custom icons uses a `core-iconset` to retrieve 
- * and use another, user-defined iconset.
- *
- * Example:
- *
- *     <core-iconset id="my-icons" src="my-icons.png" width="96" iconSize="24"
- *         icons="location place starta stopb bus car train walk">
- *     </core-iconset>
- *
- * This will automatically register the icon set "my-icons" to the iconset
- * database.  To use these icons from within another element, make a 
- * `core-iconset` element and call the `byId` method to retrieve a
- * given iconset. To apply a particular icon to an element, use the 
- * `applyIcon` method. For example:
- *
- *     iconset.applyIcon(iconNode, 'car');
- *
- * Themed icon sets are also supported. The `core-iconset` can contain child
- * `property` elements that specify a theme with an offsetX and offsetY of the
- * theme within the icon resource. For example.
- *
- *     <core-iconset id="my-icons" src="my-icons.png" width="96" iconSize="24"
- *         icons="location place starta stopb bus car train walk">
- *       <property theme="special" offsetX="256" offsetY="24"></property>
- *     </core-iconset>
- *
- * Then a themed icon can be applied like this:
- *
- *     iconset.applyIcon(iconNode, 'car', 'special');
- *
- * @element core-iconset
- * @extends core-meta
- * @homepage github.io
- */
--->
-
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<!--
-`core-meta` provides a method of constructing a self-organizing database.
-It is useful to collate element meta-data for things like catalogs and for 
-designer.
-
-Example, an element folder has a `metadata.html` file in it, that contains a 
-`core-meta`, something like this:
-
-    <core-meta id="my-element" label="My Element">
-      <property name="color" value="blue"></property>
-    </core-meta>
-
-An application can import as many of these files as it wants, and then use 
-`core-meta` again to access the collected data.
-
-    <script>
-      var meta = document.createElement('core-meta');
-      console.log(meta.list); // dump a list of all meta-data elements that have been created
-    </script>
-
-Use `byId(id)` to retrive a specific core-meta.
-
-    <script>
-      var meta = document.createElement('core-meta');
-      console.log(meta.byId('my-element'));
-    </script>
-
-By default all meta-data are stored in a single databse.  If your meta-data 
-have different types and want them to be stored separately, use `type` to 
-differentiate them.
-
-Example:
-
-    <core-meta id="x-foo" type="xElt"></core-meta>
-    <core-meta id="x-bar" type="xElt"></core-meta>
-    <core-meta id="y-bar" type="yElt"></core-meta>
-
-    <script>
-      var meta = document.createElement('core-meta');
-      meta.type = 'xElt';
-      console.log(meta.list);
-    </script>
-
-@group Polymer Core Elements
-@element core-meta
-@homepage github.io
--->
-
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
@@ -493,7 +305,196 @@ html /deep/ [segment], html /deep/ segment {
 </style>
 
 <script src="bower_components/polymer/polymer.js"></script>
-<!--<link rel="import" href="../polymer-dev/polymer.html">--> 
+<!--<link rel="import" href="../polymer-dev/polymer.html">--> </div>
+        <div hidden><!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+`core-icon-button` is an icon with button behaviors.
+
+    <core-icon-button src="star.png"></core-icon-button>
+
+`core-icon-button` includes a default icon set.  Use `icon` to specify 
+which icon from the icon set to use.
+
+    <core-icon-button icon="menu"></core-icon-button>
+
+See [`core-iconset`](#core-iconset) for more information about 
+how to use a custom icon set.
+
+@group Polymer Core Elements
+@element core-icon-button
+@homepage github.io
+-->
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!--
+
+The `core-icon` element displays an icon. By default an icon renders as 24px square.
+
+Example using src:
+
+    <core-icon src="star.png"></core-icon>
+
+Example setting size to 32px x 32px:
+
+    <core-icon class="big" src="big_star.png"></core-icon>
+
+    <style>
+      .big {
+        height: 32px;
+        width: 32px;
+      }
+    </style>
+
+Example using icon from default iconset:
+
+    <core-icon icon="menu"></core-icon>
+
+Example using icon `cherry` from custom iconset `fruit`:
+
+    <core-icon icon="fruit:cherry"></core-icon>
+
+See [core-iconset](#core-iconset) and [core-iconset-svg](#core-iconset-svg) for more information about
+how to use a custom iconset.
+
+See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html) for the default set of icons. To use the default set of icons you'll need to include an import for `core-icons.html`. To use a different built-in set of icons, you'll need to include an import for `core-icons/iconsets/<iconset>.html`.
+
+@group Polymer Core Elements
+@element core-icon
+@homepage polymer.github.io
+-->
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+/**
+ * @group Polymer Core Elements
+ *
+ * The `core-iconset` element allows users to define their own icon sets. 
+ * The `src` property specifies the url of the icon image. Multiple icons may
+ * be included in this image and they may be organized into rows.
+ * The `icons` property is a space separated list of names corresponding to the
+ * icons. The names must be ordered as the icons are ordered in the icon image.
+ * Icons are expected to be square and are the size specified by the `iconSize`
+ * property. The `width` property corresponds to the width of the icon image 
+ * and must be specified if icons are arranged into multiple rows in the image.
+ *
+ * All `core-iconset` elements are available for use by other `core-iconset`
+ * elements via a database keyed by id. Typically, an element author that wants
+ * to support a set of custom icons uses a `core-iconset` to retrieve 
+ * and use another, user-defined iconset.
+ *
+ * Example:
+ *
+ *     <core-iconset id="my-icons" src="my-icons.png" width="96" iconSize="24"
+ *         icons="location place starta stopb bus car train walk">
+ *     </core-iconset>
+ *
+ * This will automatically register the icon set "my-icons" to the iconset
+ * database.  To use these icons from within another element, make a 
+ * `core-iconset` element and call the `byId` method to retrieve a
+ * given iconset. To apply a particular icon to an element, use the 
+ * `applyIcon` method. For example:
+ *
+ *     iconset.applyIcon(iconNode, 'car');
+ *
+ * Themed icon sets are also supported. The `core-iconset` can contain child
+ * `property` elements that specify a theme with an offsetX and offsetY of the
+ * theme within the icon resource. For example.
+ *
+ *     <core-iconset id="my-icons" src="my-icons.png" width="96" iconSize="24"
+ *         icons="location place starta stopb bus car train walk">
+ *       <property theme="special" offsetX="256" offsetY="24"></property>
+ *     </core-iconset>
+ *
+ * Then a themed icon can be applied like this:
+ *
+ *     iconset.applyIcon(iconNode, 'car', 'special');
+ *
+ * @element core-iconset
+ * @extends core-meta
+ * @homepage github.io
+ */
+-->
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+`core-meta` provides a method of constructing a self-organizing database.
+It is useful to collate element meta-data for things like catalogs and for 
+designer.
+
+Example, an element folder has a `metadata.html` file in it, that contains a 
+`core-meta`, something like this:
+
+    <core-meta id="my-element" label="My Element">
+      <property name="color" value="blue"></property>
+    </core-meta>
+
+An application can import as many of these files as it wants, and then use 
+`core-meta` again to access the collected data.
+
+    <script>
+      var meta = document.createElement('core-meta');
+      console.log(meta.list); // dump a list of all meta-data elements that have been created
+    </script>
+
+Use `byId(id)` to retrive a specific core-meta.
+
+    <script>
+      var meta = document.createElement('core-meta');
+      console.log(meta.byId('my-element'));
+    </script>
+
+By default all meta-data are stored in a single databse.  If your meta-data 
+have different types and want them to be stored separately, use `type` to 
+differentiate them.
+
+Example:
+
+    <core-meta id="x-foo" type="xElt"></core-meta>
+    <core-meta id="x-bar" type="xElt"></core-meta>
+    <core-meta id="y-bar" type="yElt"></core-meta>
+
+    <script>
+      var meta = document.createElement('core-meta');
+      meta.type = 'xElt';
+      console.log(meta.list);
+    </script>
+
+@group Polymer Core Elements
+@element core-meta
+@homepage github.io
+-->
+
+
 
 <polymer-element name="core-meta" attributes="label type" hidden assetpath="bower_components/core-meta/">
 <script>
@@ -1683,7 +1684,6 @@ polyfill-next-selector { content: ':host .indent'; }
 </template>
 <script>Polymer('core-toolbar');</script></polymer-element>
 </div>
-        <div hidden>undefined</div>
         <div hidden><!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
