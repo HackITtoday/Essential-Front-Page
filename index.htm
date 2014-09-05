@@ -6,18 +6,13 @@
 <!--Script and Style References-->
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <title>Essential UK Hotel Reservations 01189 714 700</title>
-        <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" >
-        <link href="./bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" >
         <link href="./css/main.css" rel="stylesheet" >
-        <link rel="import" href="./bower_components/core-icons/core-icons.html">
-        <link rel="import" href="./bower_components/core-icon/core-icon.html"> 
-        <link rel="import" href="./bower_components/core-scaffold/core-scaffold.html">
-        <link rel="import" href="./bower_components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="./bower_components/core-menu/core-menu.html">
-        <link rel="import" href="./bower_components/core-item/core-item.html">
-        <link rel="import" href="./bower_components/core-icon-button/core-icon-button.html">
-        <link rel="import" href="./bower_components/core-toolbar/core-toolbar.html">
-        <link rel="import" href="./bower_components/core-menu/core-submenu.html">
+
+<link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+
         <script src="./bower_components/platform/platform.js"> </script>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./bower_components/typeahead.js/dist/typeahead.jquery.min.js"></script>
@@ -36,7 +31,7 @@
                 var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch:{ url:  "/index.json"}
+            prefetch:{ url:  "./index.json"}
             });
 
                 search.initialize();
@@ -65,7 +60,7 @@
               })
               $('.btn').button();
 
-            angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive"])
+            angular.module('app', ['slideMenu','infinite-scroll'])
             .controller('MainCtrl', function ($scope, $http) {
 
               if  ($scope.items == undefined) { $scope.items = [] }
@@ -93,23 +88,41 @@
 
     <body>
 
-    <!-- Top Push Down Menu -->
-        <section id="wrapper" class="wrapper" data-asm-wrapper>
-            <section id="buttons">
-              <div data-asm-control="pushTop"><core-icon icon="arrow-drop-down" ></core-icon></div>
-            </section>
-        </section>
-
-        <nav data-asm-push-top>
-            <ul>
-                <li>Contact Us</li>
-                <li>Email Us</li>
-            </ul>
-        </nav>
-
 <!--Side Menu-->
-        <section id="main_content" class="inner" >
-
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        top: 0px;
+        left: 0px;
+      }
+      #core_drawer_panel {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+      }
+      #core_header_panel {
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+      }
+      #core_toolbar {
+        color: rgb(255, 255, 255);
+        background-color: rgb(79, 125, 201);
+      }
+      #section {
+        height: 1000px;
+        background: linear-gradient(rgb(214, 227, 231), rgb(173, 216, 230));
+      }
+    </style>
+    <core-drawer-panel transition responsivewidth="1200px" selected="main" id="core_drawer_panel" class="drag-element" touch-action>
+      <section drawer>
             <div style="padding:20px" id="menu">
 
                 <div id="menu-list">
@@ -122,20 +135,11 @@
                 </div>
 
             </div>
-
-        </section>
-
-<!-- Jumbotron -->
-        <section id="main" class="jumbotron">
-
-            <div class="container">
-<!--
-              <a href="/" title="Essential Hotels Reservations">
-                <img src="https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg" alt="Essential Hotels 01189714700 ">
-              </a>
--->
-
-              <div id="WhiteBox">
+      </section>
+      <section main>
+        <core-header-panel mode="standard" id="core_header_panel">
+          <core-toolbar id="core_toolbar" class="tall">
+              <div class="middle" id="WhiteBox">
                   <div id="MiddleTitle">
 
                       <a href="/" title="Essential Hotels Reservations">
@@ -156,28 +160,21 @@
                     </div>
                 </div>
 
-            </div>
-
-        </section>
-
+          </core-toolbar>
+          <section id="section">
 <!--Grid of Content-->
-        <section class="container">
 
             <div class="row">
               <div class="col-centered center-block col-md-12">
-
                   <ul class="nav nav-pills nav-justified">
                       <li class="active"><a ng-click="typeFilter = 'attractions'"> Attractions</a></li>
                       <li><a ng-click="typeFilter = 'destinations'"> Destinations</a></li>
                       <li><a ng-click="typeFilter = 'hotels'"> Hotels</a></li>
                       <li><a ng-click="typeFilter = ''"> All</a></li>
                   </ul>
-
-
                 </div>
             </div>
-
-
+            
             <div ng-controller="MainCtrl" class="col-centered center-block" >
               <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
                 <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
@@ -191,7 +188,10 @@
               </ul>
             </div>
 
-        </section>
+          </section>
+        </core-header-panel>
+      </section>
+    </core-drawer-panel>
 
     </body>
 
