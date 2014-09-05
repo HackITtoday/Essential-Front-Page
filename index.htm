@@ -97,8 +97,7 @@
          <a href="#">Contact Us</a>
                    
       </section>
-      <core-header-panel main>
-        <core-scroll-header-panel condenses id="core_scroll_header_panel">
+      <core-scroll-header-panel main condenses id="core_scroll_header_panel">
           <core-toolbar id="core_toolbar" class="tall">
             <core-icon-button icon="menu" class="top" onclick="document.querySelector('core-drawer-panel').togglePanel();">Menu</core-icon-button>
         <div class="bottom" id="WhiteBox">
@@ -125,8 +124,8 @@
             </div>
         </div>
         </core-toolbar>
-        </core-scroll-header-panel>
   <!--Grid of Content-->
+        <div class="content">
           <paper-tabs selected="3" selectedindex="0" id="paper_tabs">
             <paper-tab ng-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
             <paper-tab ng-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
@@ -145,7 +144,8 @@
               </li>
             </ul>
           </div>
-        </core-header-panel>
+        </div>
+        </core-scroll-header-panel>
     </core-drawer-panel>
 
     </body>

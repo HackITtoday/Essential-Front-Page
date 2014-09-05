@@ -1,9 +1,3 @@
-/*
-body #main {
-    background: url(//essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Different-1200-x-Use.jpg) 50%;
-    text-align: center;
-}
-*/
 body .white-box {
     background: #FFFFFF;
     opacity: .9;
@@ -17,6 +11,10 @@ body {
   color: #fff;
   font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+div.content {
+  min-height:5000px
+}
+
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -70,7 +68,7 @@ a {
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
-      :host {
+      :host { 
         width: 100%;
         box-sizing: border-box;
         top: 0px;
@@ -99,6 +97,14 @@ a {
         background-image: url(https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg);
         background-position: 50%;
         height: 440px;
+      }
+      core-scroll-header-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow-y: scroll;
       }
       #section {
         background: linear-gradient(rgb(214, 227, 231), rgb(173, 216, 230));
