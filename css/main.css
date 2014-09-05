@@ -13,7 +13,10 @@ body .white-box {
     max-width: 427px;
     margin: 75px auto;
 }
-
+body {
+  color: #fff;
+  font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 .typeahead,
 .tt-query,
 .tt-hint {
@@ -64,6 +67,46 @@ body .white-box {
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
+      :host {
+        width: 100%;
+        box-sizing: border-box;
+        top: 0px;
+        left: 0px;
+      }
+      core-scroll-header-panel::shadow #headerBg {
+        background-image: url(https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg);
+      }
+      #core_drawer_panel {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+      }
+      #core_header_panel {
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+      }
+      #core_toolbar {
+        color: rgb(255, 255, 255);
+        background-color: #33cccc;
+        background-image: url(https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg);
+        background-position: 50%;
+        height: 440px;
+      }
+      #section {
+        background: linear-gradient(rgb(214, 227, 231), rgb(173, 216, 230));
+      }
+      core-drawer-panel[narrow] core-toolbar core-icon-button {
+        display: inline-block;
+      }
+      core-toolbar core-icon-button.top {
+        display: none;
+        margin: 8px;
+      }
 .hotels {
   padding-left: 20px;
   line-height: 16px;
@@ -182,8 +225,12 @@ body .white-box {
     max-width: 500px;
     margin: 0px auto;
     padding: 10px;
+    position: relative;
+    bottom: 170px;
 }
-
+#draw {
+    background: #3CC;
+}
 .nav-justified {
     width: 90%;
     text-align: center;

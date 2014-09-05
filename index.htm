@@ -16,17 +16,15 @@
         <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
         <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
 
+        <link href='//fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+
         <script src="./bower_components/platform/platform.js"> </script>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./bower_components/typeahead.js/dist/typeahead.jquery.min.js"></script>
         <script src="./bower_components/typeahead.js/dist/bloodhound.min.js"></script>
         <script src="./bower_components/handlebars/handlebars.js"></script>
         <script src="./bower_components/angular/angular.min.js"></script>
-        <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="./bower_components/bootstrap/js/button.js"></script>
         <script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
-        <script src="./bower_components/angular-pageslide/angular-pageslide-directive.js"></script>
-        <script src="./bower_components/angular-side-menu/angular-slide-menu.js"></script>
 
         <script type='text/javascript'>//<![CDATA[
             window.onload=function(){
@@ -61,7 +59,6 @@
                   var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
                   $(this).addClass(imgClass);
               })
-              $('.btn').button();
 
             angular.module('app', ['infinite-scroll'])
             .controller('MainCtrl', function ($scope, $http) {
@@ -93,47 +90,9 @@
 
 <!--Side Menu-->
     <style>    
-      :host {
-        width: 100%;
-        box-sizing: border-box;
-        top: 0px;
-        left: 0px;
-      }
-      core-scroll-header-panel::shadow #headerBg {
-        background-image: url(demos/images/bg9.jpg);
-      }
-      #core_drawer_panel {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-      }
-      #core_header_panel {
-        width: 100%;
-        height: 100%;
-        left: 0px;
-        top: 0px;
-        position: absolute;
-      }
-      #core_toolbar {
-        color: rgb(255, 255, 255);
-        background-color: rgb(79, 125, 201);
-        height: 440px;
-      }
-      #section {
-        background: linear-gradient(rgb(214, 227, 231), rgb(173, 216, 230));
-      }
-      core-drawer-panel[narrow] core-toolbar core-icon-button {
-        display: inline-block;
-      }
-      core-toolbar core-icon-button.top {
-        display: none;
-        margin: 8px;
-      }
     </style>
     <core-drawer-panel transition responsivewidth="1200px" selected="main" id="core_drawer_panel" class="drag-element" touch-action>
-      <section drawer>
+      <section drawer id="draw">
                     <h2>Essential Hotels</h2>
                     <ul>
                         <li><a href="#">About Us</a></li>
@@ -145,7 +104,7 @@
         <core-scroll-header-panel condenses keepcondensedheader id="core_scroll_header_panel">
           <core-toolbar id="core_toolbar" class="tall">
             <core-icon-button icon="menu" class="top" onclick="document.querySelector('core-drawer-panel').togglePanel();"></core-icon-button>
-        <div class="middle" id="WhiteBox">
+        <div class="bottom" id="WhiteBox">
           <div id="MiddleTitle">
 
             <a href="/" title="Essential Hotels Reservations">
