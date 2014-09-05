@@ -24,7 +24,6 @@
         <script src="./bower_components/typeahead.js/dist/bloodhound.min.js"></script>
         <script src="./bower_components/handlebars/handlebars.js"></script>
         <script src="./bower_components/angular/angular.min.js"></script>
-        <script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
         <script type='text/javascript'>//<![CDATA[
             window.onload=function(){
@@ -61,7 +60,7 @@
                   $(this).addClass(imgClass);
               })
 
-            angular.module('app', ['infinite-scroll'])
+            angular.module('app', [])
             .controller('MainCtrl', function ($scope, $http) {
 
               if  ($scope.items == undefined) { $scope.items = [] }
@@ -135,7 +134,7 @@
             <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Sights</paper-tab>
           </paper-tabs>
           <div ng-controller="MainCtrl" class="col-centered center-block" >
-            <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
+            <ul class="grid" >
               <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
               <div>
                 <a ng-href="{{item.url}}" >
