@@ -26,7 +26,8 @@
         <script src="./bower_components/angular/angular.min.js"></script>
 
         <script type='text/javascript'>//<![CDATA[
-            window.onload=function(){
+         //   window.onload=function(){
+        window.addEventListener('HTMLImportsLoaded', function(e) {
 /* Search Box Script */
                 var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
