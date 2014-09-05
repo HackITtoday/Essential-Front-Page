@@ -25,6 +25,7 @@
     "angular-masonry": "~0.9.0",
     "angular-typeahead": "~0.2.1",
     "handlebars": "~2.0.0",
-    "core-scaffold": "Polymer/core-scaffold#~0.4.0"
+    "core-scaffold": "Polymer/core-scaffold#~0.4.0",
+    "paper-tabs": "Polymer/paper-tabs#~0.4.0"
   }
 }
