@@ -46,7 +46,7 @@ div.content {
 }
 a {
   text-decoration:none;
-  color:#fff;
+  font-color: #fff;
 }
 .tt-hint {
     color: #999
@@ -254,6 +254,7 @@ a {
 }
 #draw a {
   display:block;
+  color: #fff;
 }
 .nav-justified {
     width: 90%;
@@ -270,5 +271,9 @@ a {
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
     text-align: center;
-    color:black;
+    color: black;
+}
+
+#paper_tabs {
+    color: black;
 }
