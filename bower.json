@@ -24,6 +24,7 @@
     "core-elements": "Polymer/core-elements#~0.3.5",
     "angular-masonry": "~0.9.0",
     "angular-typeahead": "~0.2.1",
-    "handlebars": "~2.0.0"
+    "handlebars": "~2.0.0",
+    "angular-route": "~1.2.23"
   }
 }
