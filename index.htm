@@ -25,7 +25,7 @@
                 var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch:{ url:  "/index.json"}
+            prefetch:{ url:  "./index.json"}
             });
 
                 search.initialize();
@@ -64,7 +64,7 @@
 
               if  ($scope.items == undefined) { $scope.items = [] }
 
-              $http.get('/index.json').success(function (thisdata) {
+              $http.get('./index.json').success(function (thisdata) {
                 $scope.allitems  =  thisdata;
                 for (i = 0; i <= 140; i++) {
                   $scope.items.push( $scope.allitems.shift() );
