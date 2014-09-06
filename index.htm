@@ -49,16 +49,21 @@
                     }
                   });
   /* the Grid code */              
-                  $('.grid').find('img').each(function() {
-                    var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-                    $(this).addClass(imgClass);
-                  })
-
+	
               $('.grid').find('img').each(function() {
-                  var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-                  $(this).addClass(imgClass);
+                var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+                $(this).addClass(imgClass);
               })
 
+              $('.grid').find('img').each(function() {
+                var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+                $(this).addClass(imgClass);
+              })
+// update nav when clicked
+	    $(".nav.nav-pills li").click(function() {
+	      $(".nav.nav-pills li").removeClass('active');
+	      $(this).addClass('active');
+	    }
             angular.module('app', [])
             .controller('MainCtrl', function ($scope, $http) {
 
