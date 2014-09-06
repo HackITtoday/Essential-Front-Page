@@ -17,6 +17,7 @@
         <script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
         <script src="./bower_components/angular-pageslide/angular-pageslide-directive.js"></script>
         <script src="./bower_components/angular-side-menu/angular-slide-menu.js"></script>
+        <script src="./bower_components/angular-route/angular-route.min.js"></script>
 
         <script type='text/javascript'>//<![CDATA[
             window.onload=function(){
@@ -58,7 +59,7 @@
 	      $(".nav.nav-pills li").removeClass('active');
 	      $(this).addClass('active');
 	    });
-            angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive"])
+            angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive","ngRoute"])
             .controller('MainCtrl', function ($scope, $http) {
 
               if  ($scope.items == undefined) { $scope.items = [] }
