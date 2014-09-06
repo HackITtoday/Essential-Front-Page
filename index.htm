@@ -53,6 +53,11 @@
               })
               $('.btn').button();
 
+// update nav when clicked
+	    $(".nav.nav-pills li").click(function() {
+	      $(".nav.nav-pills li").removeClass('active');
+	      $(this).addClass('active');
+	    }
             angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive"])
             .controller('MainCtrl', function ($scope, $http) {
 
@@ -76,12 +81,11 @@
 
         </script>
 
-
     </head>
 
     <body>
 
-    <!-- Top Push Down Menu -->
+    <!-- Top Push Down Menu
         <section id="wrapper" class="wrapper" data-asm-wrapper>
             <section id="buttons">
                 <div data-asm-control="pushTop">Push Top</div>
@@ -94,28 +98,27 @@
                 <li>Email Us</li>
             </ul>
         </nav>
-
+-->
 <!--Side Menu-->
         <section id="main_content" class="inner" ng-app="app">
 
-            <button type="button" class="btn btn-default btn-lg pull-left" id="menu-button" pageslide="left"  ps-speed="0.5" href="#menu">
+            <button type="button" class="btn btn-info btn-lg pull-left" id="menu-button" pageslide="left"  ps-speed="0.5" href="#menu">
                 Menu
             </button>
 
             <div style="padding:20px" id="menu">
 
                 <div id="close-button">
-                    <button type="button" class="btn btn-default btn-lg pull-right" id="menu-close" href="#">
+                    <button type="button" class="btn btn-warning btn-lg pull-right" id="menu-close" href="#">
                         Close
                     </button>
                 </div>
-
+<!--Menu List-->
                 <div id="menu-list">
-                    <h2>Essential Hotels</h2>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Conferences</a></li>
+                    <h2 style="color: #fff;">Menu</h2>
+                    <ul style="color: #fff">
+                        <li><a href="https://essentialhotels.co.uk/aboutus">About Us</a></li>
+                        <li><a href="https://essentialhotels.co.uk/contactus">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -132,7 +135,6 @@
                 <img src="https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg" alt="Essential Hotels 01189714700 ">
               </a>
 -->
-
               <div id="WhiteBox">
                   <div id="MiddleTitle">
 
@@ -140,19 +142,19 @@
                           <img src="https://essentialhotels.co.uk/wp-content/uploads/2013/11/EH-Logo-bed-white-with-black-bold.png" alt="Essential Hotels 01189714700 ">
                       </a>
 
-                      <div id="TitleAboveSearch" style="font-size:20px; font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif, font-weight:300, padding-top;20px ;">
-                          Search for Hotels, Destinations &amp; Attractions
+                      <div id="TitleAboveSearch" style="font-size:25px; font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight:300; padding-top:5px ;">
+                          Call Our UK Based Hotel Reservation Experts
                       </div>
-                  </div>
 
-                  <div class="essential">
-                    <input class="typeahead" type="text" placeholder="Hotel, City, Area or Interest" />
-                  </div>
+                      <div id="TextUnderSearch">
+                          <a href="tel:+1800229933" style="color:#33cccc;">0118 971 4700</a>
+                      </div>
 
-                    <div id="TextUnderSearch">
-                            0118 971 4700
+                      <div class="essential">
+                        <input class="typeahead" type="text" placeholder="Search for Hotels, Destinations or Sights" />
+                      </div>
+
                     </div>
-                </div>
 
             </div>
 
@@ -163,26 +165,27 @@
 
             <div class="row">
               <div class="col-centered center-block col-md-12">
-
                   <ul class="nav nav-pills nav-justified">
-                      <li class="active"><a ng-click="typeFilter = 'attractions'"> Attractions</a></li>
-                      <li><a ng-click="typeFilter = 'destinations'"> Destinations</a></li>
+                      <li class="active"><a ng-click="typeFilter = ''"> All</a></li>
                       <li><a ng-click="typeFilter = 'hotels'"> Hotels</a></li>
-                      <li><a ng-click="typeFilter = ''"> All</a></li>
+                      <li><a ng-click="typeFilter = 'destinations'"> Destinations</a></li>
+                      <li><a ng-click="typeFilter = 'attractions'"> Sights</a></li>
                   </ul>
 
 
                 </div>
             </div>
 
-
             <div ng-controller="MainCtrl" class="col-centered center-block" >
               <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
                 <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
                     <div>
                         <a ng-href="{{item.url}}" >
-                            <span class="title"> {{item.value}} </span>
-                            <img ng-src="{{item.image}}" />
+
+                                <span class="title"> {{item.value}} </span>
+                                <div id="gridimage">
+                                    <img ng-src="{{item.image}}" />
+                                </div>
                         </a>
                     </div>
                 </li>
