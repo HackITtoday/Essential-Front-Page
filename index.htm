@@ -55,6 +55,11 @@
               })
               $('.btn').button();
 
+// update nav when clicked
+	    $(".nav.nav-pills li").click(function() {
+	      $(".nav.nav-pills li").removeClass('active');
+	      $(this).addClass('active');
+	    }
             angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive"])
             .controller('MainCtrl', function ($scope, $http) {
 
