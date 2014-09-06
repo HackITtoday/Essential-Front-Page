@@ -4,15 +4,12 @@ body #main {
     text-align: center;
 }
 */
-body .white-box {
-    background: #FFFFFF;
-    opacity: .9;
-    text-align: center;
-    min-height: 187px;
-    padding: 17px 70px;
-    max-width: 427px;
-    margin: 75px auto;
+
+body {
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
 }
+
 
 .typeahead,
 .tt-query,
@@ -65,19 +62,16 @@ body .white-box {
 }
 
 .hotels {
-  padding-left: 20px;
   line-height: 16px;
   background: url(https://essentialhotels.co.uk/wp-content/themes/listings-child/images/icons/bed-icon.jpg) no-repeat;
   background-clip: padding-box;
 }
 .destinations {
-  padding-left: 20px;
   line-height: 16px;
   background: url(https://essentialhotels.co.uk/wp-content/themes/listings-child/images/icons/destination-pin-16x16.jpg) no-repeat;
   background-clip: padding-box;
 }
 .attractions {
-  padding-left: 20px;
   line-height: 16px;
   background: url(https://essentialhotels.co.uk/wp-content/themes/listings-child/images/icons/attraction-icon.jpg) no-repeat;
   background-clip: padding-box;
@@ -132,34 +126,38 @@ body .white-box {
     overflow:hidden;
 }
 .grid span.title {
-    background: #fff;
     display: block;
     width: 180px;
-    opacity: .9;
-    margin: 143px 10px -183px 10px;
+    opacity: .99;
+    margin: 53px 10px -183px 10px;
     height: 40px;
+    color: white;
+    font-size: 25px;
+    line-height: 1.0;
+    font-weight: 900;
 }
 .ng-pageslide {
     background: #33cccc;
+    width: 250px;
+    opacity: 0.9;
 }
 
 #menu-button {
-    margin: 10px;
+    margin: 20px;
 }
-
-#menu-list {
-    clear:right;
-    padding-top: 20px;
+.btn-warning {
+    margin-top: 5px;
 }
 
 .jumbotron {
     background-image: url('https://essentialhotels.co.uk/wp-content/uploads/2014/08/Lowry-Hotel-Uncut-Version-2.jpg');
     text-align: center;
     padding-top: 100px;
-    height:400px;
-    background-position: 0% 25%;
+    height: 500px;
+    background-position: 60% 0%;
     background-size: cover;
 }
+
 
 #TitleOverSearch {
     font-size:20px;
@@ -168,17 +166,18 @@ body .white-box {
 }
 
 #TextUnderSearch {
-    font-size:30px;
+    font-size:40px;
     color: #33cccc;
     font-weight: 300;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 10px;
 }
 
 #WhiteBox {
     background: #FFFFFF;
     opacity: .9;
     text-align: center;
-    min-height: 200px;
+    min-height: 300px;
     max-width: 500px;
     margin: 0px auto;
     padding: 10px;
@@ -187,9 +186,41 @@ body .white-box {
 .nav-justified {
     width: 90%;
     text-align: center;
-    margin: 0px auto;0px;
+    margin: 0px auto;
     padding-bottom: 20px;
     font-size: 20px;
     font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
 }
+
+#TextUnUnSearch {
+    font-size: 20px;
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    text-align: center;
+    color: black;
+}
+
+#menu-list a {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+#menu-list ul {
+    margin-top: 35px;
+    text-align: right;
+    list-height: 1.6;
+}
+
+li {
+    list-style-type: none;
+}
+
+#gridimage   {
+    margin-top: 90px;
+}
+
+
+
+
