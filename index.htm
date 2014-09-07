@@ -9,6 +9,7 @@
         <title>Essential UK Hotel Reservations 01189 714 700</title>
         <link href="./css/main.css" rel="stylesheet" >
 
+        <link rel="import" href="grid.html">
         <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
         <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
         <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
@@ -129,27 +130,7 @@
             </div>
         </div>
         </core-toolbar>
-  <!--Grid of Content-->
-        <div class="content">
-          <paper-tabs selected="0" selectedindex="0" id="paper_tabs">
-            <paper-tab ng-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
-            <paper-tab ng-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
-            <paper-tab ng-click="typeFilter = 'destinations'" id="paper_tab1">Destinations</paper-tab>
-            <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Sights</paper-tab>
-          </paper-tabs>
-          <div ng-controller="MainCtrl" class="col-centered center-block" >
-            <ul class="grid" >
-              <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-              <div>
-                <a ng-href="{{item.url}}" >
-                  <span class="title"> {{item.value}} </span>
-                  <img ng-src="{{item.image}}" />
-                </a>
-              </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+	<grid-of-content> </grid-of-content>
         </core-scroll-header-panel>
     </core-drawer-panel>
 
