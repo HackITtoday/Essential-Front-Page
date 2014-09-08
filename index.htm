@@ -13,8 +13,6 @@
         <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
         <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
         <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
-        <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
         <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
 
         <link href='//fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
@@ -23,7 +21,6 @@
         <script src="./bower_components/typeahead.js/dist/typeahead.jquery.min.js"></script>
         <script src="./bower_components/typeahead.js/dist/bloodhound.min.js"></script>
         <script src="./bower_components/handlebars/handlebars.js"></script>
-        <script src="./bower_components/angular/angular.min.js"></script>
 
         <script type='text/javascript'>//<![CDATA[
             window.onload=function(){
@@ -51,40 +48,7 @@
                   });
   /* the Grid code */              
 	
-              $('.grid').find('img').each(function() {
-                var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-                $(this).addClass(imgClass);
-              })
-
-              $('.grid').find('img').each(function() {
-                var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-                $(this).addClass(imgClass);
-              })
-// update nav when clicked
-	    $(".nav.nav-pills li").click(function() {
-	      $(".nav.nav-pills li").removeClass('active');
-	      $(this).addClass('active');
-	    }
-            angular.module('app', [])
-            .controller('MainCtrl', function ($scope, $http) {
-
-              if  ($scope.items == undefined) { $scope.items = [] }
-
-              $http.get('/index.json').success(function (thisdata) {
-                $scope.allitems  =  thisdata;
-                for (i = 0; i <= 140; i++) {
-                  $scope.items.push( $scope.allitems.shift() );
-                }
-              });
-              $scope.loadMore = function() {
-                for(var i = 1; i <= 10; i++) {
-                  $scope.items.push( $scope.allitems.shift() );
-                }
-              };
-            });
-
-            angular.bootstrap(document.body, ['app']);
-            }//]]>
+           }//]]>
 
         </script>
 
@@ -130,7 +94,7 @@
             </div>
         </div>
         </core-toolbar>
-	<grid-of-content> </grid-of-content>
+	<grid-content url="/index.json"> </grid-content>
         </core-scroll-header-panel>
     </core-drawer-panel>
 

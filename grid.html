@@ -1,47 +1,49 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
-<polymer-element name="grid-of-content">
+<link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="bower_components/core-ajax/core-ajax.html"> 
+<polymer-element name="grid-content" attributes="url">
   <template>
     <style>
     :host {
-      display: inline-block;
-      position: relative;
-      background-color: white;
-      padding: 20px;
-      width: 100%;
-      font-size: 1.2rem;
-      font-weight: 300;
+      display: block;
     }
-    .card-header {
-      margin: 5px;
-    }
-    
+
     </style>
-    
+        <link href="./css/main.css" rel="stylesheet" >
+      <core-ajax auto url="{{url}}" handleAs="json" on-core-response="{{ajaxResponse}}" ></core-ajax> 
         <div class="content">
           <paper-tabs selected="0" selectedindex="0" id="paper_tabs">
-            <paper-tab ng-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
-            <paper-tab ng-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
-            <paper-tab ng-click="typeFilter = 'destinations'" id="paper_tab1">Destinations</paper-tab>
-            <paper-tab ng-click="typeFilter = 'attractions'" id="paper_tab" active>Sights</paper-tab>
+            <paper-tab on-click="typeFilter = ''" id="paper_tab3">All</paper-tab>
+            <paper-tab on-click="typeFilter = 'hotels'" id="paper_tab2">Hotels</paper-tab>
+            <paper-tab on-click="typeFilter = 'destinations'" id="paper_tab1">Destinations</paper-tab>
+            <paper-tab on-click="typeFilter = 'attractions'" id="paper_tab" active>Sights</paper-tab>
           </paper-tabs>
           <div ng-controller="MainCtrl" class="col-centered center-block" >
             <ul class="grid" >
-  <template>
-              <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
-              <div>
-                <a ng-href="{{item.url}}" >
-                  <span class="title"> {{item.value}} </span>
-                  <img ng-src="{{item.image}}" />
-                </a>
-              </div>
-              </li>
+              <template repeat="{{item in items}}">
+              <!--  #// <template if="{{item.show}}" if="{{item.type}} == typeFilter"> -->
+                  <li class='{{item.type}}'>
+                    <div>
+                      <a href="{{item.url}}">
+                        <span class="title"> {{item.value}} </span>
+                        <img src="{{item.image}}" />
+                      </a>
+                    </div>
+                  </li>
+              <!-- #// </template> -->
+              </template>
             </ul>
-  </template>
           </div>
         </div>
 
   </template>
   <script>
-  Polymer({});
+  Polymer({
+    ajaxResponse: function(event, ajax) {
+      this.items = ajax.response;
+      console.log(ajax.response);
+    }
+  });
   </script>
 </polymer-element>
