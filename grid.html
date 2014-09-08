@@ -2,7 +2,7 @@
 <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="bower_components/paper-tabs/paper-tab.html">
 <link rel="import" href="bower_components/core-ajax/core-ajax.html"> 
-<polymer-element name="grid-content" attributes="url">
+<polymer-element name="grid-content" attributes="url number">
   <template>
     <style>
     :host {
@@ -22,16 +22,16 @@
           <div ng-controller="MainCtrl" class="col-centered center-block" >
             <ul class="grid" >
               <template repeat="{{item in items}}">
-              <!--  #// <template if="{{item.show}}" if="{{item.type}} == typeFilter"> -->
+               <template if="{{item.show}}" > 
                   <li class='{{item.type}}'>
                     <div>
                       <a href="{{item.url}}">
                         <span class="title"> {{item.value}} </span>
-                        <img src="{{item.image}}" />
+                        <img class="tow" on-load="{{setImgClass}}" src="{{item.image}}" />
                       </a>
                     </div>
                   </li>
-              <!-- #// </template> -->
+               </template>
               </template>
             </ul>
           </div>
@@ -42,7 +42,22 @@
   Polymer({
     ajaxResponse: function(event, ajax) {
       this.items = ajax.response;
+      for (i = 0; i < this.number; i++) { 
+        this.items[Math.floor(Math.random() * this.items.length)].show = 1;
+      }
       console.log(ajax.response);
+    },
+    attributeChanged: function(attrName, oldVal, newVal) {
+    //var newVal = this.getAttribute(attrName);
+      console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+    },
+    setImgClass: function () { 
+        /* the Grid code */              
+      $('.grid').find('img.tow').each(function() {
+        var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+        $(this).addClass(imgClass);
+        $(this).removeClass("tow");
+      })
     }
   });
   </script>
