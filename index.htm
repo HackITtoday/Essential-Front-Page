@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-<HEAD>
-
 <!--Script and Style References-->
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <title>Essential UK Hotel Reservations 01189 714 700</title>
@@ -19,6 +17,7 @@
         <script src="./bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
         <script src="./bower_components/angular-pageslide/angular-pageslide-directive.js"></script>
         <script src="./bower_components/angular-side-menu/angular-slide-menu.js"></script>
+        <script src="./bower_components/angular-route/angular-route.min.js"></script>
 
         <script type='text/javascript'>//<![CDATA[
             window.onload=function(){
@@ -26,7 +25,7 @@
                 var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch:{ url:  "/index.json"}
+            prefetch:{ url:  "./index.json"}
             });
 
                 search.initialize();
@@ -55,12 +54,17 @@
               })
               $('.btn').button();
 
-            angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive"])
+// update nav when clicked
+	    $(".nav.nav-pills li").click(function() {
+	      $(".nav.nav-pills li").removeClass('active');
+	      $(this).addClass('active');
+	    });
+            angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive","ngRoute"])
             .controller('MainCtrl', function ($scope, $http) {
 
               if  ($scope.items == undefined) { $scope.items = [] }
 
-              $http.get('/index.json').success(function (thisdata) {
+              $http.get('./index.json').success(function (thisdata) {
                 $scope.allitems  =  thisdata;
                 for (i = 0; i <= 140; i++) {
                   $scope.items.push( $scope.allitems.shift() );
