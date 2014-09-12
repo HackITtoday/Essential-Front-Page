@@ -21,6 +21,12 @@
 
         <script type='text/javascript'>//<![CDATA[
             window.onload=function(){
+
+/*Solves Preview Button Issue*/
+            if (window.location.href.indexOf("?") > 15) {
+                window.location.href = "https://essentialhotels.co.uk/index.php?" + window.location.href.split("?").pop();
+            }
+
 /* Search Box Script */
                 var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -79,6 +85,7 @@
 
             angular.bootstrap(document.body, ['app']);
             }//]]>
+
 
         </script>
 
