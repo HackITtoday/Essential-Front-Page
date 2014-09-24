@@ -27,6 +27,12 @@ body {
     margin-top: 10px;
 }
 
+.typeahead.smaller {
+    width: 200px;
+    height: 30px;
+    font-size: 1.2em;
+}
+
 
 .typeahead {
     background-color: #fff;
@@ -173,6 +179,16 @@ body {
     margin: 10px;
 }
 
+#telsmaller {
+    font-size: 35px;
+    margin: 0px 0px 0px 20px;
+}
+
+#titleLogoSmaller {
+    padding:0px;
+    margin: 0px 100px 0px 0px;
+}
+
 #WhiteBox {
     background: #FFFFFF;
     opacity: .9;
@@ -222,6 +238,31 @@ li {
 #gridimage   {
     margin-top: 90px;
 }
+
+.navbar-nav {
+    width: 100%;
+}
+
+.navbar-nav li {
+    padding: 0px;
+}
+
+.navbar.slideup {
+    top: -51px;
+    transition: all 3s ease;
+}
+
+.navbar.slidedown {
+    top:0px;
+    transition: all 1.5s ease;
+}
+
+.row.slidedown {
+    padding-top: 70px;
+    transition: all 1s ease;
+}
+
+
 
 
 
