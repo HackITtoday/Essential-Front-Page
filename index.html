@@ -84,6 +84,19 @@
 	      }
 
               if  ($scope.items == undefined) { $scope.items = [] }
+	      $scope.filterFn = function(cat) {
+	        if (window.location.href.indexOf("#") > 15) {
+		  $(".by-type").hide();
+	          cat_filter = window.location.href.split("#").pop().split('/');
+		  $scope.typeFilter = cat_filter[2];
+	          if ((cat.cat.indexOf(cat_filter[1]) !== -1) && (cat.type == cat_filter[2]) ) {
+	            return true; // this will be listed in the results
+	          };
+	          return false; // otherwise it won't be within the results
+		};
+		$(".by-type").show();
+	        return true; // this will be listed in the results
+	      };
 
               $http.get('./indexlatcat.json').success(function (thisdata) {
                 $scope.allitems  =  thisdata;
@@ -266,9 +279,9 @@
               <div class="col-centered center-block col-md-12">
                   <ul class="nav nav-pills nav-justified">
                       <li class="active"><a ng-click="typeFilter = ''"> All</a></li>
-                      <li><a ng-click="typeFilter = 'hotels'"> Hotels</a></li>
-                      <li><a ng-click="typeFilter = 'destinations'"> Destinations</a></li>
-                      <li><a ng-click="typeFilter = 'attractions'"> Things To Do</a></li>
+                      <li><a class='hotels' ng-click="typeFilter = 'hotels'"> Hotels</a></li>
+                      <li><a class='destinations' ng-click="typeFilter = 'destinations'"> Destinations</a></li>
+                      <li><a class='attractions' ng-click="typeFilter = 'attractions'"> Things To Do</a></li>
                   </ul>
 
 
@@ -277,9 +290,10 @@
 
             <div ng-controller="MainCtrl" class="col-centered center-block" >
               <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
-                <li ng-repeat="item in items | filter: { type: typeFilter, image: '.' } | filter:catFilter as results" class='{{item.type}}' >
+                <li ng-repeat="item in items | filter: { type: typeFilter, image: '.' } | filter:filterFn" class='{{item.type}}' >
                     <div>
                         <a ng-href="{{item.url}}" >
+
                                 <span class="title"> {{item.value}} </span>
                                 <div id="gridimage">
                                     <img ng-src="{{item.image}}" />
