@@ -33,7 +33,7 @@
                 var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch:{ url:  "./index.json"}
+            prefetch:{ url:  "./indexlatcat.json"}
             });
 
                 search.initialize();
@@ -48,6 +48,9 @@
                   }).bind("typeahead:selected", function(obj, datum, name) {
                     if (datum.url) {
                       $(location).attr('href', datum.url);
+		      cat_filter = window.location.href.split("#").pop().split('/');
+		      if (cat_filter[2])  $( ".nav-pills li a." + cat_filter[2] ).trigger( "click" );
+		      if (cat_filter[1]) $('input.typeahead').val(cat_filter[1]);
                     }
                   });
 
@@ -70,12 +73,21 @@
 	    });
             angular.module('app', ['slideMenu','infinite-scroll',"pageslide-directive","ngRoute"])
             .controller('MainCtrl', function ($scope, $http) {
+              if (window.location.href.indexOf("#") > 15) {
+		cat_filter = window.location.href.split("#").pop().split('/');
+		$scope.typeFilter = cat_filter[2];
+		$scope.catFilter = cat_filter[1];
+		// look at facility and collections in
+		// .grid .facilities li
+		// .grid .collections li
+		// and put it in $scope 
+	      }
 
               if  ($scope.items == undefined) { $scope.items = [] }
 
-              $http.get('./index.json').success(function (thisdata) {
+              $http.get('./indexlatcat.json').success(function (thisdata) {
                 $scope.allitems  =  thisdata;
-                for (i = 0; i <= 140; i++) {
+                for (i = 0; i <= 840; i++) {
                   $scope.items.push( $scope.allitems.shift() );
                 }
               });
@@ -201,7 +213,7 @@
                       </div>
 
                       <div class="essential">
-                        <input class="typeahead" type="text" placeholder="Search Hotels, Destinations or Things To Do" />
+                        <input ng-model="catFilter" class="typeahead" type="text" placeholder="Search Hotels, Destinations or Things To Do" />
                       </div>
 
                   </div>
@@ -225,7 +237,7 @@
                       </li>
                       <li>
                           <div class="essential">
-                            <input class="typeahead smaller" type="text" placeholder="Search" />
+                            <input ng-model="catFilter" class="typeahead smaller" type="text" placeholder="Search" />
                           </div>
                       </li>
                       <li>
@@ -265,14 +277,19 @@
 
             <div ng-controller="MainCtrl" class="col-centered center-block" >
               <ul class="grid" masonry infinite-scroll='loadMore()' infinite-scroll-distance='1' >
-                <li ng-repeat="item in items | filter: { type: typeFilter }" class='{{item.type}}' >
+                <li ng-repeat="item in items | filter: { type: typeFilter, image: '.' } | filter:catFilter as results" class='{{item.type}}' >
                     <div>
                         <a ng-href="{{item.url}}" >
-
                                 <span class="title"> {{item.value}} </span>
                                 <div id="gridimage">
                                     <img ng-src="{{item.image}}" />
                                 </div>
+		                <ul class="facilities" >
+			          <li ng-repeat="item in item.facilities" class="{{item}}" >{{item}}</li>
+		                </ul>
+		                <ul class="collections" >
+			          <li ng-repeat="item in item.collections" class="{{item}}" >{{item}}</li>
+		                </ul>
                         </a>
                     </div>
                 </li>
